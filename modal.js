@@ -1,16 +1,24 @@
-// create module
+/*
+ * @license
+ * angularjs-modal v1.0.0
+ * (c) 2015 Shawn Adrian http://nerdburn.com
+ * License: MIT
+ */
+ 
+'use strict';
+ 
 var modal = angular.module('modal', []);
 
 modal.factory('modal', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$timeout', '$templateCache', function($document, $compile, $controller, $http, $rootScope, $q, $timeout, $templateCache) {
 
-  //  Get the body of the document, we'll add the modal to this.
+  //  get the body of the document, we'll add the modal to it
   var body = $document.find('body');
 
   function ModalService() {
 
     var self = this;
 
-    //  Returns a promise which gets the template, either
+    //  returns a promise which gets the template, either
     //  from the template parameter or via a request to the
     //  template url parameter.
     var getTemplate = function(template, templateUrl) {
@@ -43,21 +51,21 @@ modal.factory('modal', ['$document', '$compile', '$controller', '$http', '$rootS
 
     self.show = function(options) {
 
-      //  Create a deferred we'll resolve when the modal is ready.
+      //  create a deferred we'll resolve when the modal is ready.
       var deferred = $q.defer();
 
-      //  Validate the input parameters.
+      //  validate the input parameters.
       var controller = options.controller;
       if(!controller) {
         deferred.reject("No controller has been specified.");
         return deferred.promise;
       }
 
-      //  Get the actual html of the template.
+      //  get the actual html of the template.
       getTemplate(options.template, options.templateUrl)
         .then(function(template) {
 
-          //  Create a new scope for the modal.
+          //  create a new scope for the modal.
           var modalScope = $rootScope.$new();
 
           //  Create the inputs object to the controller - this will include

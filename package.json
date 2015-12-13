@@ -1,0 +1,25 @@
+{
+  "name": "angularjs-modal",
+  "version": "1.0.0",
+  "description": "An Angular.js modal service with bundled HTML and CSS.",
+  "main": "modal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inputlogic/angularjs-modal.git"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "modal",
+    "service"
+  ],
+  "author": "Shawn Adrian <shawn@inputlogic.ca> (http://inputlogic.ca)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inputlogic/angularjs-modal/issues"
+  },
+  "homepage": "https://github.com/inputlogic/angularjs-modal#readme"
+}
