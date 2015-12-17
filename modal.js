@@ -46,8 +46,13 @@
         var deferred = $q.defer();
 
         //  validate the input parameters.
+        if (!options) {
+          deferred.reject("No options have been specified.");
+          return deferred.promise;
+        }
+
         var controller = options.controller;
-        if(!controller) {
+        if (!controller) {
           deferred.reject("No controller has been specified.");
           return deferred.promise;
         }
