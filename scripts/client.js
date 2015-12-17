@@ -23,8 +23,7 @@ tasks.add('karma', ['lint'], function(done) {
 });
 
 tasks.add('lint', function(done) {
-  var cmd = 'jshint client/**.js';
-  exec(cmd, opts, logger(done));
+  spawner('jshint', ['modal.js'], done);
 });
 
 tasks.add('clean', ['rm'], function(done) {

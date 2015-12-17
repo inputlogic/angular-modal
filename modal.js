@@ -6,6 +6,7 @@
  */
 
 (function (root, factory) {
+  'use strict';
   if (typeof define === 'function' && define.amd) {
     define(['angular'], factory);
   } else if (typeof exports === 'object') {
@@ -37,6 +38,7 @@
 
     //  get the body of the document, we'll add the modal to it
     var body = $document.find('body');
+    var $ = angular.element;
 
     return new ModalInstance();
 
@@ -74,7 +76,9 @@
             var inputs = {
               $scope: modalScope,
               close: function(result, delay) {
-                if(delay === undefined || delay === null) delay = 0;
+                if (!delay) {
+                  delay = 0;
+                }
                 $timeout(function () {
                   closeDeferred.resolve(result);
                 }, delay);
@@ -141,7 +145,7 @@
             });
 
             //  When close is resolved, we'll clean up the scope and element.
-            modal.close.then(function(result) {
+            modal.close.then(function() {
               //  Clean up the scope
               modalScope.$destroy();
 
