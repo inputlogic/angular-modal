@@ -4,7 +4,7 @@
   "description": "An Angular.js modal service with bundled HTML and CSS.",
   "main": "modal.js",
   "scripts": {
-    "client": "node scripts/client.js",
+    "start": "node scripts.js",
     "test": "karma start karma.conf.js --browsers Firefox --single-run"
   },
   "repository": {
@@ -35,7 +35,7 @@
     "karma-mocha": "^0.2.1",
     "mocha": "^2.3.4",
     "node-static": "^0.7.7",
-    "orchestrator": "^0.3.7",
-    "yargs": "^3.31.0"
+    "scripts-plus": "^1.1.0",
+    "uglifyify": "^3.0.1"
   }
 }

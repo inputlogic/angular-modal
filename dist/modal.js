@@ -7,6 +7,7 @@
  */
 
 (function (root, factory) {
+  'use strict';
   if (typeof define === 'function' && define.amd) {
     define(['angular'], factory);
   } else if (typeof exports === 'object') {
@@ -38,50 +39,23 @@
 
     //  get the body of the document, we'll add the modal to it
     var body = $document.find('body');
+    var $ = angular.element;
 
     return new ModalInstance();
 
     function ModalInstance() {
-      var self = this;
-
-      //  returns a promise which gets the template, either
-      //  from the template parameter or via a request to the
-      //  template url parameter.
-      var getTemplate = function(template, templateUrl) {
-        var deferred = $q.defer();
-        if(template) {
-          deferred.resolve(template);
-        } else if(templateUrl) {
-          // check to see if the template has already been loaded
-          var cachedTemplate = $templateCache.get(templateUrl);
-          if(cachedTemplate !== undefined) {
-            deferred.resolve(cachedTemplate);
-          }
-          // if not, let's grab the template for the first time
-          else {
-            $http({method: 'GET', url: templateUrl, cache: true})
-              .then(function(result) {
-                // save template into the cache and return the template
-                $templateCache.put(templateUrl, result.data);
-                deferred.resolve(result.data);
-              })
-              .catch(function(error) {
-                deferred.reject(error);
-              });
-          }
-        } else {
-          deferred.reject("No template or templateUrl has been specified.");
-        }
-        return deferred.promise;
-      };
-
-      self.show = function(options) {
+      this.show = function(options) {
         //  create a deferred we'll resolve when the modal is ready.
         var deferred = $q.defer();
 
         //  validate the input parameters.
+        if (!options) {
+          deferred.reject("No options have been specified.");
+          return deferred.promise;
+        }
+
         var controller = options.controller;
-        if(!controller) {
+        if (!controller) {
           deferred.reject("No controller has been specified.");
           return deferred.promise;
         }
@@ -103,7 +77,9 @@
             var inputs = {
               $scope: modalScope,
               close: function(result, delay) {
-                if(delay === undefined || delay === null) delay = 0;
+                if (!delay) {
+                  delay = 0;
+                }
                 $timeout(function () {
                   closeDeferred.resolve(result);
                 }, delay);
@@ -170,7 +146,7 @@
             });
 
             //  When close is resolved, we'll clean up the scope and element.
-            modal.close.then(function(result) {
+            modal.close.then(function() {
               //  Clean up the scope
               modalScope.$destroy();
 
@@ -190,6 +166,37 @@
 
         return deferred.promise;
       };
+
+      //  returns a promise which gets the template, either
+      //  from the template parameter or via a request to the
+      //  template url parameter.
+      function getTemplate(template, templateUrl) {
+        var deferred = $q.defer();
+        if(template) {
+          deferred.resolve(template);
+        } else if(templateUrl) {
+          // check to see if the template has already been loaded
+          var cachedTemplate = $templateCache.get(templateUrl);
+          if(cachedTemplate !== undefined) {
+            deferred.resolve(cachedTemplate);
+          }
+          // if not, let's grab the template for the first time
+          else {
+            $http({method: 'GET', url: templateUrl, cache: true})
+              .then(function(result) {
+                // save template into the cache and return the template
+                $templateCache.put(templateUrl, result.data);
+                deferred.resolve(result.data);
+              })
+              .catch(function(error) {
+                deferred.reject(error);
+              });
+          }
+        } else {
+          deferred.reject("No template or templateUrl has been specified.");
+        }
+        return deferred.promise;
+      }
     }
   }
 
