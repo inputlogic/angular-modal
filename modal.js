@@ -125,19 +125,7 @@
               }
             });
             
-            /*
-            // close modal on backdrop click
-            $(modalElement).click(function(event){
-             var modalBody = $(this).children('.app-modal-body')[0];
-             //var modalBackdrop = $(this).children('.app-modal-overlay')
-             if(modalBody !== event.target && !$.contains(modalBody, event.target)) {
-               event.preventDefault();
-               closeDeferred.resolve();
-             }
-            });
-            */
-
-            var $overlay = $(modalElement).find('.app-modal-overlay');
+            var $overlay = $(modalElement).find('.modal-overlay');
             if ($overlay.length) {
               $overlay.click(function(event) {
                 event.preventDefault();
