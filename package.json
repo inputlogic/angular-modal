@@ -5,7 +5,7 @@
   "main": "modal.js",
   "scripts": {
     "start": "node scripts.js",
-    "test": "karma start karma.conf.js --browsers Firefox --single-run"
+    "test": "karma start karma.conf.js --browsers Chrome --single-run"
   },
   "repository": {
     "type": "git",

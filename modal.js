@@ -23,7 +23,7 @@
     .module(moduleName, [])
     .factory('modalService', modalService);
 
-  modalService.$injected = [
+  modalService.$inject = [
     '$document', 
     '$compile', 
     '$controller', 
