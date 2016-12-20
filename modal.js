@@ -1,7 +1,8 @@
 /*
  * @license
- * angularjs-modal v1.0.0
- * (c) 2015 Shawn Adrian http://nerdburn.com
+ * angularjs-modal v1.0.1
+ * (c) 2015 Shawn Adrian <shawn@inputlogic.ca> http://inputlogic.ca
+ * (c) 2015 Adrian Unger <adrian@inputlogic.ca> http://inputlogic.ca
  * License: MIT
  */
 
@@ -16,21 +17,21 @@
   }
 }(this, function (angular) {
   'use strict';
-   
+
   var moduleName = 'modal';
-  
+
   angular
     .module(moduleName, [])
     .factory('modalService', modalService);
 
   modalService.$inject = [
-    '$document', 
-    '$compile', 
-    '$controller', 
-    '$http', 
-    '$rootScope', 
-    '$q', 
-    '$timeout', 
+    '$document',
+    '$compile',
+    '$controller',
+    '$http',
+    '$rootScope',
+    '$q',
+    '$timeout',
     '$templateCache'
   ];
 
@@ -66,10 +67,10 @@
             // create a new scope for the modal.
             var modalScope = $rootScope.$new();
 
-            // Create the inputs object to the controller - this will include the scope, 
-            // as well as all inputs provided. We will also create a deferred that is 
-            // resolved with a provided close function. The controller can then call 
-            // 'close(result)'. The controller can also provide a delay for closing - 
+            // Create the inputs object to the controller - this will include the scope,
+            // as well as all inputs provided. We will also create a deferred that is
+            // resolved with a provided close function. The controller can then call
+            // 'close(result)'. The controller can also provide a delay for closing -
             // this is helpful if there are closing animations which must finish first.
             var closeDeferred = $q.defer();
             var inputs = {
@@ -124,7 +125,7 @@
                 closeDeferred.resolve();
               }
             });
-            
+
             var $overlay = $(modalElement).find('.modal-overlay');
             if ($overlay.length) {
               $overlay.click(function(event) {
@@ -155,7 +156,7 @@
         return deferred.promise;
       };
 
-      // returns a promise which gets the template, either from the template parameter 
+      // returns a promise which gets the template, either from the template parameter
       // or via a request to the template url parameter.
       function getTemplate(template, templateUrl) {
         var deferred = $q.defer();
@@ -165,13 +166,13 @@
         } else if(templateUrl) {
           // Load the cached template or request it for the first time
           var cachedTemplate = $templateCache.get(templateUrl);
-          
+
           if (cachedTemplate !== undefined) {
             deferred.resolve(cachedTemplate);
           } else {
             $http({
-              method: 'GET', 
-              url: templateUrl, 
+              method: 'GET',
+              url: templateUrl,
               cache: true
             })
             .then(function(result) {

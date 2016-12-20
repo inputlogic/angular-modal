@@ -1,6 +1,6 @@
 {
   "name": "angularjs-modal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An Angular.js modal service with bundled HTML and CSS.",
   "main": "modal.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "modal",
     "service"
   ],
-  "author": "Shawn Adrian <shawn@inputlogic.ca> (http://inputlogic.ca)",
+  "author": ["Shawn Adrian <shawn@inputlogic.ca>", "Adrian Unger <adrian@inputlogic.ca>"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/inputlogic/angularjs-modal/issues"
